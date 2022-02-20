@@ -42,7 +42,7 @@ export class EditPostComponent implements OnInit, OnDestroy {
        Validators.required,
        Validators.minLength(6),
      ]),
-     description: new FormControl(this.post.description,[
+     body: new FormControl(this.post.body,[
        Validators.required,
        Validators.minLength(10),
      ]),
@@ -54,12 +54,12 @@ export class EditPostComponent implements OnInit, OnDestroy {
       return;
     }
     const title = this.postForm.value.title;
-    const description = this.postForm.value.description;
+    const body = this.postForm.value.body;
 
     const post: Post = {
       id: this.post.id,
       title,
-      description,
+      body,
     };
     // dispatch the action
     this.store.dispatch(updatePost({post}));
