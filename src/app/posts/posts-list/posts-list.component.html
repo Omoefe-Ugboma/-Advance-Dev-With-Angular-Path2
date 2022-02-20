@@ -10,7 +10,7 @@
            <tr>
                <th>ID</th>
                <th>Title</th>
-               <th>Description</th>
+               <th>body</th>
                <th>Actions</th>
            </tr>
        </thead>
@@ -18,7 +18,7 @@
            <tr *ngFor="let post of postsData">
              <td>{{post.id}}</td>
              <td>{{post.title}}</td>
-             <td>{{post.description}}</td>
+             <td>{{post.body}}</td>
              <td>
                <a href="" class="btn btn-primary" [routerLink]="['edit', post.id]">Update</a>&nbsp;
                <button class="btn btn-danger" (click)="onDeletePost(post.id)">Trash</button>

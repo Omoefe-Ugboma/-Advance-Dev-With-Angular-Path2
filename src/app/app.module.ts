@@ -11,6 +11,7 @@ import { environment } from '../environments/environment';
 // import { appReducer } from './store/app.state';
 import { ReactiveFormsModule } from '@angular/forms';
 import { EffectsModule } from '@ngrx/effects';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -23,15 +24,13 @@ import { EffectsModule } from '@ngrx/effects';
   imports: [
   
   BrowserModule,
+    HttpClientModule,
     ReactiveFormsModule,
     EffectsModule.forRoot([]),
     StoreModule.forRoot({}),
     AppRoutingModule,
     StoreDevtoolsModule.instrument({ 
       maxAge: 25, logOnly: environment.production }),
-     
-    
-      
   ],
   providers: [],
   bootstrap: [AppComponent]
