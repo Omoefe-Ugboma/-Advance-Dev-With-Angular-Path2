@@ -34,7 +34,7 @@ export class PostsService{
     // updatePost(post: Post){  
     //     return this.http.patch(this.url + '/' + post.id, JSON.stringify({ isRead: true }))  
     //   }  
-    
+
     updatePost(post: Post){
         const postData = { 
             [post.id!]: {title: post.title, description: post.description},
@@ -42,6 +42,12 @@ export class PostsService{
         return this.http.patch(
             `https://blogpost-814da-default-rtdb.firebaseio.com/posts.json`,
             postData
+        );  
+    }
+
+    deletePost(id: string){
+        return this.http.delete(
+            `https://blogpost-814da-default-rtdb.firebaseio.com/posts/${id}.json`
         );
     }
     
