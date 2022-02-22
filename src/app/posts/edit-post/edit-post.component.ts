@@ -15,7 +15,7 @@ import { updatePost } from '../state/posts.actions';
 })
 export class EditPostComponent implements OnInit, OnDestroy {
   post!: Post;
-  postForm!: FormGroup;
+  updateForm!: FormGroup;
   postSubscription: Subscription | undefined;
   constructor(
     private route: ActivatedRoute, 
@@ -37,12 +37,12 @@ export class EditPostComponent implements OnInit, OnDestroy {
   }
 
   createForm(){
-   this.postForm =  new FormGroup({
+   this.updateForm =  new FormGroup({
      title: new FormControl(this.post.title,[
        Validators.required,
        Validators.minLength(6),
      ]),
-     body: new FormControl(this.post.body,[
+     description: new FormControl(this.post.description,[
        Validators.required,
        Validators.minLength(10),
      ]),
@@ -50,16 +50,16 @@ export class EditPostComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(){
-    if(!this.postForm.valid){
+    if(!this.updateForm.valid){
       return;
     }
-    const title = this.postForm.value.title;
-    const body = this.postForm.value.body;
+    const title = this.updateForm.value.title;
+    const description = this.updateForm.value.description;
 
     const post: Post = {
       id: this.post.id,
       title,
-      body,
+      description,
     };
     // dispatch the action
     this.store.dispatch(updatePost({post}));

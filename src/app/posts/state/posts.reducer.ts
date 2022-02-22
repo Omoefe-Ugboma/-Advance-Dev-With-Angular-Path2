@@ -1,5 +1,5 @@
 import { createReducer, on } from "@ngrx/store";
-import { addPostSuccess, deletePost, loadPostsSuccess, updatePost } from "./posts.actions";
+import { addPostSuccess, deletePost, loadPostsSuccess, updatePost, updatePostSuccess } from "./posts.actions";
 import { initialState, PostsState } from "./posts.state";
 
 const _postsReducer = createReducer(
@@ -13,7 +13,7 @@ const _postsReducer = createReducer(
             posts:[...state.posts, post],
         };
     }),
-    on(updatePost, (state, action) => {
+    on(updatePostSuccess, (state, action) => {
         const updatePosts =  state.posts.map((post) => {
             return action.post.id === post.id ? action.post : post;
         });
