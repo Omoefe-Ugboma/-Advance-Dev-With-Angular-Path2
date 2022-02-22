@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Post } from '../models/posts.model';
 import { map } from 'rxjs/operators';
+import { addPost } from './../posts/state/posts.actions';
 
 @Injectable({
     providedIn:'root',
@@ -21,5 +22,10 @@ export class PostsService{
           return posts;
        })
      );
+    }
+    addPost(post: Post): Observable<{name: string}>{
+      return this.http.post<{ name: string}>(
+         `https://jsonplaceholder.typicode.com/posts`,post
+      );
     }
 }
