@@ -21,20 +21,20 @@ export class AddPostComponent implements OnInit {
         Validators.required,
         Validators.minLength(6),
       ]),
-      body: new FormControl(null,[
+      description: new FormControl(null,[
         Validators.required,
       Validators.minLength(10),]),
     });
   }
 
   showDescriptionErrors(){
-    const descriptionForm =  this.postForm.get('body');
+    const descriptionForm =  this.postForm.get('description');
     if(descriptionForm!.touched && !descriptionForm!.valid){
       if(descriptionForm!.errors!.required){
-        return 'body is required';
+        return 'description is required';
       }
       if(descriptionForm!.errors!.minLength){
-        return 'body should be of minimum 10 characters length';
+        return 'description should be of minimum 10 characters length';
       }
     }
   }
@@ -46,7 +46,7 @@ export class AddPostComponent implements OnInit {
     // console.log(this.postForm.value);
     const post: Post = {
       title: this.postForm.value.title,
-      body: this.postForm.value.body,
+      description: this.postForm.value.description,
     };
     this.store.dispatch(addPost({post}));
   }
